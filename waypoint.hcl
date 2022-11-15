@@ -9,7 +9,8 @@ app "hello-app" {
     use "docker" {}
     registry {
       use "docker" {
-        image = "${var.image}:${var.tag}"
+        image = var.image
+        tag = var.tag
 #        auth {
 #          username = "hashicassie"
 #          password = ""
