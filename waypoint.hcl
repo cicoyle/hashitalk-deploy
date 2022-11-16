@@ -2,7 +2,7 @@ project = "hashitalk-deploy"
 
 app "hello-app" {
   runner {
-    profile = "aws"
+    profile = "kubernetes-aws"
   }
 
   build {
