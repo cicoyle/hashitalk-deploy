@@ -11,21 +11,21 @@ app "hello-app" {
       use "docker" {
         image = var.image
         tag = var.tag
-#        auth {
-#          username = "hashicassie"
-#          password = ""
-#        }
+        auth {
+          username = "hashicassie"
+          password = var.password
+        }
       }
     }
   }
   deploy {
     use "kubernetes" {
       probe_path = "/"
-      namespace  = "cassie-hashitalk-deploy"
+#      namespace  = "cassie-hashitalk-deploy"
     }
     workspace "production" {
       use "kubernetes" {
-        namespace = "cassie-hashitalk-deploy"
+#        namespace = "cassie-hashitalk-deploy"
       }
     }
   }
@@ -38,4 +38,8 @@ variable "image" {
 variable "tag" {
   type = string
   default = "2022"
+}
+variable "password" {
+  type = string
+  env = ["DOCKER_PWD"]
 }
