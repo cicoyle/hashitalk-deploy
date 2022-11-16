@@ -24,10 +24,10 @@ app "hello-app" {
       use "docker" {
         image = var.image
         tag = var.tag
-#        auth {
-#          username = "hashicassie"
-#          password = var.password
-#        }
+        auth { //to push to dockerhub
+          username = "hashicassie"
+          password = var.password
+        }
       }
     }
   }
@@ -52,7 +52,8 @@ variable "tag" {
   type = string
   default = "2022"
 }
-#variable "password" {
-#  type = string
-#  env = ["DOCKER_PWD"]
-#}
+variable "password" {
+  type = string
+  env = ["DOCKER_PWD"]
+  sensitive = true
+}
