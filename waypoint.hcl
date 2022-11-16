@@ -1,9 +1,25 @@
 project = "hashitalk-deploy"
 
 app "hello-app" {
-  runner {
-    profile = "kubernetes-aws"
+  config {
+    runner {
+      // All config in here is exposed only on runners.
+      profile = "kubernetes-aws"
+
+      env = {
+        DOCKER_PWD = var.password
+      }
+    }
+
+    // App config is here...
   }
+
+#  runner {
+#    profile = "kubernetes-aws"
+#    env = {
+#      DOCKER_PWD = var.password
+#    }
+#  }
 
   build {
     use "docker" {}
