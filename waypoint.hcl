@@ -1,25 +1,22 @@
 project = "hashitalk-deploy"
 
 app "hello-app" {
-  config {
-    runner {
-      // All config in here is exposed only on runners.
-      profile = "kubernetes-aws"
-
-      env = {
-        DOCKER_PWD = var.password
-      }
-    }
+#  config {
+#    runner {
+#      // All config in here is exposed only on runners.
+#      profile = "kubernetes-aws"
+#
+##      env = {
+##        DOCKER_PWD = var.password
+##      }
+#    }
 
     // App config is here...
-  }
+  #}
 
-#  runner {
-#    profile = "kubernetes-aws"
-#    env = {
-#      DOCKER_PWD = var.password
-#    }
-#  }
+  runner {
+    profile = "kubernetes-aws"
+  }
 
   build {
     use "docker" {}
@@ -27,10 +24,10 @@ app "hello-app" {
       use "docker" {
         image = var.image
         tag = var.tag
-        auth {
-          username = "hashicassie"
-          password = var.password
-        }
+#        auth {
+#          username = "hashicassie"
+#          password = var.password
+#        }
       }
     }
   }
@@ -55,7 +52,7 @@ variable "tag" {
   type = string
   default = "2022"
 }
-variable "password" {
-  type = string
-  env = ["DOCKER_PWD"]
-}
+#variable "password" {
+#  type = string
+#  env = ["DOCKER_PWD"]
+#}
