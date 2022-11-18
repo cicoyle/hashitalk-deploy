@@ -25,5 +25,5 @@ FROM alpine:3.14
 #RUN mkdir /opt/config
 
 COPY --from=builder /tmp/server /server
-
+EXPOSE 8080
 CMD [ "/server" ]

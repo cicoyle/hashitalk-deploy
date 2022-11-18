@@ -6,17 +6,17 @@ app "hello-app" {
 #      // All config in here is exposed only on runners.
 #      profile = "kubernetes-aws"
 #
-##      env = {
-##        DOCKER_PWD = var.password
-##      }
+#      env = {
+#        DOCKER_PWD = var.password
+#      }
 #    }
 
     // App config is here...
-  #}
+#  }
 
-  runner {
-    profile = "kubernetes-aws"
-  }
+#  runner {
+#    profile = "kubernetes-aws"
+#  }
 
   build {
     use "docker" {}
@@ -33,13 +33,12 @@ app "hello-app" {
   }
   deploy {
     use "kubernetes" {
-      probe_path = "/"
-#      namespace  = "cassie-hashitalk-deploy"
+#      probe_path = "/SayHello"
+      service_port = 8080
+      namespace = "default"
     }
     workspace "production" {
-      use "kubernetes" {
-#        namespace = "cassie-hashitalk-deploy"
-      }
+      use "kubernetes" {}
     }
   }
 }

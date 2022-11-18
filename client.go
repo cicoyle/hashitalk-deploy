@@ -5,14 +5,13 @@ import (
 	"fmt"
 	"github.com/hashitalk-deploy/hello"
 	"google.golang.org/grpc"
-	"google.golang.org/grpc/credentials/insecure"
 	"log"
 )
 
 func main() {
 	var conn *grpc.ClientConn
-	creds := insecure.NewCredentials()
-	conn, err := grpc.Dial(fmt.Sprintf(":%d", 9000), grpc.WithTransportCredentials(creds))
+	conn, err := grpc.Dial(fmt.Sprintf("127.0.0.1:%d", 8081), grpc.WithInsecure())
+
 	if err != nil {
 		log.Fatalf("did not connect: %s", err)
 	}

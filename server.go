@@ -9,8 +9,9 @@ import (
 )
 
 func main() {
-	fmt.Println("Hello from main :)")
-	listener, err := net.Listen("tcp", fmt.Sprintf(":%d", 9000))
+	fmt.Println("Starting server on port 8080")
+
+	listener, err := net.Listen("tcp", fmt.Sprintf(":%d", 8080))
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
