@@ -55,7 +55,7 @@ variable "image" {
 }
 variable "tag" {
   type = string
-  default = "2022"
+  default = "new2022"
 }
 variable "password" {
   type = string
