@@ -29,6 +29,12 @@ app "hello-app-aws" {
       use "kubernetes" {}
     }
   }
+
+  release {
+    use "kubernetes" {
+      load_balancer = true
+      port          = 5300
+    }
 }
 
 variable "image" {
