@@ -35,6 +35,7 @@ app "hello-app-aws" {
       load_balancer = true
       port          = 5300
     }
+  }
 }
 
 variable "image" {
