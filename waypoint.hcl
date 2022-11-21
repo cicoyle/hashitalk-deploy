@@ -40,11 +40,11 @@ app "hello-app" {
       use "kubernetes" {}
     }
   }
-  release {
-    use "kubernetes" {
-      port = 5300
-    }
-  }
+#  release {
+#    use "kubernetes" {
+#      port = 5300
+#    }
+#  }
 
 
 }
