@@ -13,7 +13,7 @@ RUN go mod download
 
 COPY . ./
 
-RUN go build -o /tmp/server aws/server.go
+RUN go build -o /tmp/server server.go
 
 #--------------------------------------------------------------------
 # final image
