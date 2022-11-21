@@ -33,8 +33,8 @@ app "hello-app" {
   }
   deploy {
     use "kubernetes" {
-#      probe_path = "/SayHello"
-      service_port = 8080
+      port = 5300
+      service_port = 5300
       namespace = "default"
     }
     workspace "production" {
