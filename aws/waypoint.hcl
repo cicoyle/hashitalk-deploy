@@ -1,4 +1,4 @@
-project = "hashitalk-deploy"
+project = "hashitalk-deploy-aws"
 
 app "hello-app-aws" {
   runner {
