@@ -1,22 +1,9 @@
 project = "hashitalk-deploy"
 
-app "hello-app" {
-#  config {
-#    runner {
-#      // All config in here is exposed only on runners.
-#      profile = "kubernetes-aws"
-#
-#      env = {
-#        DOCKER_PWD = var.password
-#      }
-#    }
-
-    // App config is here...
-#  }
-
-#  runner {
-#    profile = "kubernetes-aws"
-#  }
+app "hello-app-aws" {
+  runner {
+    profile = "kubernetes-aws"
+  }
 
   build {
     use "docker" {}
@@ -24,13 +11,15 @@ app "hello-app" {
       use "docker" {
         image = var.image
         tag = var.tag
-        auth { //to push to dockerhub
-          username = "hashicassie"
+        // Credentials for authentication to push to docker registry
+        auth {
+          username = var.username
           password = var.password
         }
       }
     }
   }
+
   deploy {
     use "kubernetes" {
       service_port = 5300
@@ -40,13 +29,6 @@ app "hello-app" {
       use "kubernetes" {}
     }
   }
-#  release {
-#    use "kubernetes" {
-#      port = 5300
-#    }
-#  }
-
-
 }
 
 variable "image" {
@@ -55,7 +37,11 @@ variable "image" {
 }
 variable "tag" {
   type = string
-  default = "new2022"
+  default = "aws"
+}
+variable "username" {
+  type = string
+  default = "hashicassie"
 }
 variable "password" {
   type = string

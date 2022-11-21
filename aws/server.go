@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/hashitalk-deploy/hello"
+	"github.com/hashitalk-deploy/aws/hello"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 	"log"
@@ -20,6 +20,8 @@ func main() {
 	helloServer := hello.Server{}
 	grpcServer := grpc.NewServer()
 	hello.RegisterHelloServiceServer(grpcServer, &helloServer)
+
+	// Add reflection to use grpcurl
 	reflection.Register(grpcServer)
 	if err := grpcServer.Serve(listener); err != nil {
 		log.Fatalf("failed to serve: %s", err)
