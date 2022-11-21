@@ -2,6 +2,12 @@
 
 ## Use Waypoint To Easily Deploy To AWS EKS
 
+## Repo Setup:
+```
+go mod init github.com/hashitalk-deploy/aws
+go mod tidy
+```
+
 ## Pre-Requisites:
 Note: The follow are specifically the instructions for Mac, the commands may be different for Windows
 
@@ -67,4 +73,10 @@ kubectl config current-context
 ## Build Image locally
 ```
 docker build -t hashicassie/hashitalk-deploy:2022 -f aws/Dockerfile . 
+```
+
+
+## Configure Waypoint
+```
+waypoint project apply -data-source="git" -git-url="https://github.com/cicoyle/hashitalk-deploy" -git-ref=main -git-path=aws -waypoint-hcl=waypoint.hcl hashitalk-deploy-aws
 ```
