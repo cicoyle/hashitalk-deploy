@@ -33,14 +33,20 @@ app "hello-app" {
   }
   deploy {
     use "kubernetes" {
-      port = 5300
       service_port = 5300
       namespace = "default"
+      pod {
+        port = 5300
+        name = "cassie-app"
+      }
     }
     workspace "production" {
       use "kubernetes" {}
     }
   }
+
+
+
 }
 
 variable "image" {
