@@ -1,8 +1,8 @@
-project = "hashitalk-deploy-$${var.cloud}"
+project = "hashitalk-deploy-aws"
 
-app "hello-app-$${var.cloud}" {
+app "hello-app-aws" {
   runner {
-    profile = "kubernetes-$${var.cloud}"
+    profile = "kubernetes-aws"
   }
 
   build {
@@ -37,10 +37,6 @@ app "hello-app-$${var.cloud}" {
   }
 }
 
-variable "cloud" {
-  type = string
-  default = "aws"
-}
 variable "image" {
   type = string
   default = "hashicassie/hashitalk-deploy"
