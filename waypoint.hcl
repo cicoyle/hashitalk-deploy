@@ -1,8 +1,8 @@
-project = "hashitalk-deploy-aws"
+project = "hashitalk-deploy-${var.cloud}"
 
-app "hello-app-aws" {
+app "hello-app-${var.cloud}" {
   runner {
-    profile = "kubernetes-aws"
+    profile = "kubernetes-${var.cloud}"
   }
 
   build {
@@ -10,7 +10,7 @@ app "hello-app-aws" {
     registry {
       use "docker" {
         image = var.image
-        tag = var.tag
+        tag = gitrefpretty()
         // Credentials for authentication to push to docker registry
         auth {
           username = var.username
@@ -37,13 +37,13 @@ app "hello-app-aws" {
   }
 }
 
+variable "cloud" {
+  type = string
+  default = "aws"
+}
 variable "image" {
   type = string
   default = "hashicassie/hashitalk-deploy"
-}
-variable "tag" {
-  type = string
-  default = "aws"
 }
 variable "username" {
   type = string
