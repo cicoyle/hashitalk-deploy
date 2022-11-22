@@ -1,8 +1,8 @@
-project = "hashitalk-deploy-${var.cloud}"
+project = "hashitalk-deploy-$${var.cloud}"
 
-app "hello-app-${var.cloud}" {
+app "hello-app-$${var.cloud}" {
   runner {
-    profile = "kubernetes-${var.cloud}"
+    profile = "kubernetes-$${var.cloud}"
   }
 
   build {
