@@ -54,10 +54,12 @@ aws eks update-kubeconfig --region us-east-1 --name cassieCluster
 cp ~/.kube/config ~/.kube/aws-eks-config
 ```
 OR: 
-   
-Use an existing context
+
+Switch to use an existing context
 ```
-kubectl config --kubeconfig=~/.kube/aws-eks-config use-context <context-name>
+kubectl config --kubeconfig ~/.kube/aws-eks-config use-context <context-name>
+or
+kubectl config  use-context <context-name>
 ```
 
 Optionally: Rename your context
@@ -78,5 +80,10 @@ docker build -t hashicassie/hashitalk-deploy:2022 -f aws/Dockerfile .
 
 ## Configure Waypoint
 ```
+cd /aws
+waypoint runner install -platform=kubernetes -server-addr=<server_addr> -k8s-runner-image=hashicorp/waypoint:latest -id=aws -- -label=cloud=aws
+waypoint runner profile set -env-var=DOCKER_PWD='pwd' -name=kubernetes-aws
+waypoint init
 waypoint project apply -data-source="git" -git-url="https://github.com/cicoyle/hashitalk-deploy" -git-ref=main -git-path=aws -waypoint-hcl=waypoint.hcl hashitalk-deploy-aws
+waypoint up
 ```
