@@ -1,42 +1,36 @@
 project = "hashitalk-deploy-azure"
 
-pipeline "builder" {
-  step "build-dev" {
+pipeline "build-and-test" {
+  step "my-build" {
     use "build" {}
   }
-  step "build-prod" {
-    workspace = "prod"
-    use "build" {}
+
+  step "my-deploy" {
+    use "deploy" {}
   }
-  step "deploy-dev" {
-    use "deploy" {
-      release = false
+
+  step "notify slack" {
+    image_url = "alpine/curl:3.14"
+    use "exec" {
+      # executes a binary test with some arguments
+      # Imagine this is hitting slack and not httpstat.us
+      command = "curl"
+      args    = ["-d", "text=App deployment succeeded!", "-d", "channel=C123456", "-H", "Authorization: Bearer <test>", "-X", "POST", "httpstat.us/200"]
     }
   }
-}
 
-app "hello-app-azure" {
+}
+app "hello-app-aws" {
   runner {
-    profile = "kubernetes-azure"
+    profile = "kubernetes-aws"
   }
 
   build {
     use "docker" {}
     registry {
-      workspace "prod" {
-        use "docker" {
-          image = var.image
-          tag   = "prod"
-          // Credentials for authentication to push to docker registry
-          auth {
-            username = var.username
-            password = var.password
-          }
-        }
-      }
       use "docker" {
         image = var.image
-        tag   = "dev"
+        tag = var.tag
         // Credentials for authentication to push to docker registry
         auth {
           username = var.username
@@ -51,21 +45,25 @@ app "hello-app-azure" {
       service_port = 5300
       namespace = "default"
     }
-    workspace "prod" {
+    workspace "production" {
       use "kubernetes" {}
     }
   }
 
-#  release {
-#    use "kubernetes" {
-#      port          = 5300
-#    }
-#  }
+  release {
+    use "kubernetes" {
+      port          = 5300
+    }
+  }
 }
 
 variable "image" {
   type = string
-  default = "hashicassie/hashitalk-deploy-azure"
+  default = "hashicassie/hashitalk-deploy"
+}
+variable "tag" {
+  type = string
+  default = "aws"
 }
 variable "username" {
   type = string
