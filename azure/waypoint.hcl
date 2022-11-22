@@ -26,12 +26,21 @@ app "hello-app-azure" {
       workspace "prod" {
         use "docker" {
           image = var.image
-          tag   = gitrefpretty()
+          tag   = "prod"
           // Credentials for authentication to push to docker registry
           auth {
             username = var.username
             password = var.password
           }
+        }
+      }
+      use "docker" {
+        image = var.image
+        tag   = "dev"
+        // Credentials for authentication to push to docker registry
+        auth {
+          username = var.username
+          password = var.password
         }
       }
     }
