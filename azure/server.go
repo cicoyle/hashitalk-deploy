@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/hashitalk-deploy/gcp/hello"
+	"github.com/hashitalk-deploy/azure/hello"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 	"log"
