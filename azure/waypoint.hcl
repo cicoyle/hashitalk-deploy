@@ -1,6 +1,6 @@
 project = "hashitalk-deploy-azure"
 
-pipeline "build-and-test" {
+pipeline "deploy-and-notify" {
   step "my-build" {
     use "build" {}
   }
@@ -9,7 +9,7 @@ pipeline "build-and-test" {
     use "deploy" {}
   }
 
-  step "notify slack" {
+  step "notify-slack" {
     image_url = "alpine/curl:3.14"
     use "exec" {
       # executes a binary test with some arguments
@@ -44,9 +44,6 @@ app "hello-app-aws" {
     use "kubernetes" {
       service_port = 5300
       namespace = "default"
-    }
-    workspace "production" {
-      use "kubernetes" {}
     }
   }
 
