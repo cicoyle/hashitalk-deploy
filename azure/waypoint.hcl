@@ -56,7 +56,7 @@ app "hello-app-azure" {
 
 variable "image" {
   type = string
-  default = "hashicassie/hashitalk-deploy"
+  default = "hashicassie/hashitalk-deploy-azure"
 }
 variable "username" {
   type = string

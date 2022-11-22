@@ -32,7 +32,6 @@ app "hello-app-aws" {
 
   release {
     use "kubernetes" {
-      load_balancer = true
       port          = 5300
     }
   }
