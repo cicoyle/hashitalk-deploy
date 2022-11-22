@@ -105,7 +105,7 @@ docker build -t hashicassie/hashitalk-deploy:2022 -f Dockerfile .
 waypoint runner install -platform=kubernetes -server-addr=<server_addr> -k8s-runner-image=hashicorp/waypoint:latest -id=aws -- -label=cloud=aws
 waypoint runner profile set -env-var=DOCKER_PWD='pwd' -name=kubernetes-aws
 waypoint init
-waypoint project apply -data-source="git" -git-url="https://github.com/cicoyle/hashitalk-deploy" -git-ref=main -git-path=aws -waypoint-hcl=waypoint.hcl hashitalk-deploy-aws
+waypoint project apply -data-source="git" -git-url="https://github.com/cicoyle/hashitalk-deploy" -git-ref=main -waypoint-hcl=waypoint.hcl hashitalk-deploy-aws
 waypoint up
 ```
 
@@ -162,7 +162,7 @@ waypoint runner profile set -env-var=DOCKER_PWD='pwd' -name=kubernetes-gcp
 waypoint runner profile set -name=kubernetes-gcp-dev -plugin-type=kubernetes -plugin-config=dev-k8s-runner-profile-plugin-config.hcl -target-runner-label=cloud=gcp
 waypoint runner profile set -name=kubernetes-gcp-prod -plugin-type=kubernetes -plugin-config=prod-k8s-runner-profile-plugin-config.hcl -target-runner-label=cloud=gcp
 waypoint init
-waypoint project apply -data-source="git" -git-url="https://github.com/cicoyle/hashitalk-deploy" -git-ref=main -git-path=gcp -waypoint-hcl=waypoint.hcl hashitalk-deploy-gcp
+waypoint project apply -data-source="git" -git-url="https://github.com/cicoyle/hashitalk-deploy" -git-ref=main -waypoint-hcl=waypoint.hcl hashitalk-deploy-gcp
 waypoint up
 ```
 
@@ -215,7 +215,7 @@ docker build -t hashicassie/hashitalk-deploy:2022 -f Dockerfile .
 waypoint runner install -platform=kubernetes -server-addr=<server_addr> -k8s-runner-image=hashicorp/waypoint:latest -id=azure -- -label=cloud=azure
 waypoint runner profile set -env-var=DOCKER_PWD='pwd' -name=kubernetes-azure
 waypoint init
-waypoint project apply -data-source="git" -git-url="https://github.com/cicoyle/hashitalk-deploy" -git-ref=main -git-path=azure -waypoint-hcl=waypoint.hcl hashitalk-deploy-azure
+waypoint project apply -data-source="git" -git-url="https://github.com/cicoyle/hashitalk-deploy" -git-ref=main -waypoint-hcl=waypoint.hcl hashitalk-deploy-azure
 waypoint up
 ```
 
