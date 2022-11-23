@@ -1,4 +1,4 @@
-project = "hashitalk-deploy-azure"
+project = "hashitalk-deploy-aks"
 pipeline "deploy-and-notify" {
   step "my-build" {
     use "build" {}
@@ -18,7 +18,7 @@ pipeline "deploy-and-notify" {
     }
   }
 }
-app "hello-app-azure" {
+app "hello-app-aks" {
   runner {
     profile = "kubernetes-azure"
   }
