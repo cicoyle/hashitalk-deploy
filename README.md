@@ -159,8 +159,6 @@ docker build -t hashicassie/hashitalk-deploy:2022 -f Dockerfile .
 ```
 waypoint runner install -platform=kubernetes -server-addr=<server_addr> -k8s-runner-image=hashicorp/waypoint:latest -id=gcp -- -label=cloud=gcp
 waypoint runner profile set -env-var=DOCKER_PWD='pwd' -name=kubernetes-gcp
-waypoint runner profile set -name=kubernetes-gcp-dev -plugin-type=kubernetes -plugin-config=dev-k8s-runner-profile-plugin-config.hcl -target-runner-label=cloud=gcp
-waypoint runner profile set -name=kubernetes-gcp-prod -plugin-type=kubernetes -plugin-config=prod-k8s-runner-profile-plugin-config.hcl -target-runner-label=cloud=gcp
 waypoint init
 waypoint project apply -data-source="git" -git-url="https://github.com/cicoyle/hashitalk-deploy" -git-ref=main -waypoint-hcl=waypoint.hcl hashitalk-deploy-gcp
 waypoint up

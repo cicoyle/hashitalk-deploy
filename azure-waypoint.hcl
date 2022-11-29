@@ -1,8 +1,28 @@
-project = "hashitalk-deploy-aws"
+project = "hashitalk-deploy-azure"
 
-app "hello-app-aws" {
+pipeline "deploy-and-notify" {
+  step "my-build" {
+    use "build" {}
+  }
+
+  step "my-deploy" {
+    use "deploy" {}
+  }
+
+  step "notify-slack" {
+    image_url = "alpine/curl:3.14"
+    use "exec" {
+      # executes a binary test with some arguments
+      # Imagine this is hitting slack and not httpstat.us
+      command = "curl"
+      args    = ["-d", "text=App deployment succeeded!", "-d", "channel=C123456", "-H", "Authorization: Bearer <test>", "-X", "POST", "httpstat.us/200"]
+    }
+  }
+}
+
+app "hello-app-azure" {
   runner {
-    profile = "kubernetes-aws"
+    profile = "kubernetes-azure"
   }
 
   build {
