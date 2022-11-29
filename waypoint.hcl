@@ -1,8 +1,8 @@
-project = "hashitalk-deploy-aws"
+project = "hashitalk-deploy-gcp"
 
-app "hello-app-aws" {
+app "hello-app-gcp" {
   runner {
-    profile = "kubernetes-aws"
+    profile = "kubernetes-gcp"
   }
 
   build {
