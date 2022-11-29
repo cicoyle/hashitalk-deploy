@@ -11,7 +11,7 @@ import (
 
 func main() {
 	creds := insecure.NewCredentials()
-	conn, err := grpc.Dial(fmt.Sprintf(":%d", 8080), grpc.WithTransportCredentials(creds))
+	conn, err := grpc.Dial(fmt.Sprintf(":%d", 5300), grpc.WithTransportCredentials(creds))
 	if err != nil {
 		log.Fatalf("did not connect: %s", err)
 	}
