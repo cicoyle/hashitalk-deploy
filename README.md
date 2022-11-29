@@ -160,6 +160,7 @@ waypoint runner install -platform=kubernetes -server-addr=<server_addr> -k8s-run
 waypoint runner profile set -env-var=DOCKER_PWD='pwd' -name=kubernetes-gcp
 kubectl config use-context gcp-context
 ** Make changes to waypoint.hcl **
+** GIT add, commit, push **
 waypoint init
 waypoint project apply -data-source="git" -git-url="https://github.com/cicoyle/hashitalk-deploy" -git-ref=main -waypoint-hcl=waypoint.hcl hashitalk-deploy-gcp
 waypoint up
@@ -214,9 +215,10 @@ waypoint runner install -platform=kubernetes -server-addr=<server_addr> -k8s-run
 waypoint runner profile set -env-var=DOCKER_PWD='pwd' -name=kubernetes-azure
 kubectl config use-context azure-context
 ** Make changes to waypoint.hcl **
+** GIT add, commit, push **
 waypoint init
 waypoint project apply -data-source="git" -git-url="https://github.com/cicoyle/hashitalk-deploy" -git-ref=main -waypoint-hcl=waypoint.hcl hashitalk-deploy-azure
-waypoint up
+waypoint pipeline run deploy-and-notify
 ```
 
 ### Cleanup Resources
