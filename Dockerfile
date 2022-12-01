@@ -23,4 +23,6 @@ FROM alpine:3.14
 
 COPY --from=builder /tmp/server /server
 EXPOSE 5300
+EXPOSE 9731
+ENV HOST '0.0.0.0'
 CMD [ "/server" ]
