@@ -1,8 +1,8 @@
-project = "hashitalk-deploy-aws"
+project = "hashitalk-deploy-azure"
 
-app "hello-app-aws" {
+app "hello-app-azure" {
   runner {
-    profile = "kubernetes-aws"
+    profile = "kubernetes-azure-test"
   }
 
   build {
