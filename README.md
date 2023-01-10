@@ -102,7 +102,7 @@ docker build -t hashicassie/hashitalk-deploy:2022 -f Dockerfile .
 ## Configure Waypoint
 ```
 waypoint runner install -platform=kubernetes -server-addr=<server_addr> -k8s-runner-image=hashicorp/waypoint:latest -id=aws -- -label=cloud=aws
-waypoint runner profile set -env-var=DOCKER_PWD='pwd' -name=kubernetes-aws
+waypoint runner profile set -env-var=DOCKER_PASSWORD='password' -name=kubernetes-aws
 kubectl config use-context aws-context 
 waypoint init
 waypoint project apply -data-source="git" -git-url="https://github.com/cicoyle/hashitalk-deploy" -git-ref=main -waypoint-hcl=waypoint.hcl hashitalk-deploy-aws
@@ -157,7 +157,7 @@ docker build -t hashicassie/hashitalk-deploy:2022 -f Dockerfile .
 ## Configure Waypoint
 ```
 waypoint runner install -platform=kubernetes -server-addr=<server_addr> -k8s-runner-image=hashicorp/waypoint:latest -id=gcp -- -label=cloud=gcp
-waypoint runner profile set -env-var=DOCKER_PWD='pwd' -name=kubernetes-gcp
+waypoint runner profile set -env-var=DOCKER_PASSWORD='password' -name=kubernetes-gcp
 kubectl config use-context gcp-context
 ** Make changes to waypoint.hcl **
 ** GIT add, commit, push **
@@ -212,7 +212,7 @@ docker build -t hashicassie/hashitalk-deploy:2022 -f Dockerfile .
 ## Configure Waypoint
 ```
 waypoint runner install -platform=kubernetes -server-addr=<server_addr> -k8s-runner-image=hashicorp/waypoint:latest -id=azure -- -label=cloud=azure
-waypoint runner profile set -env-var=DOCKER_PWD='pwd' -name=kubernetes-azure
+waypoint runner profile set -env-var=DOCKER_PASSWORD='password' -name=kubernetes-azure
 kubectl config use-context azure-context
 ** Make changes to waypoint.hcl **
 ** GIT add, commit, push **

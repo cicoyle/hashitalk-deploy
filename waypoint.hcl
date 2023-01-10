@@ -1,8 +1,8 @@
-project = "hashitalk-deploy-azure"
+project = "hashitalk-deploy-aws2"
 
 app "hello-app-azure" {
   runner {
-    profile = "kubernetes-azure-test"
+    profile = "kubernetes-aws2"
   }
 
   build {
@@ -45,6 +45,6 @@ variable "username" {
 }
 variable "password" {
   type = string
-  env = ["DOCKER_PWD"]
+  env = ["DOCKER_PASSWORD"]
   sensitive = true
 }
