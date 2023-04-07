@@ -1,0 +1,37 @@
+name: "Runs a Waypoint deployment on merge"
+on:
+  # once a day, at the end of the day
+  #schedule:
+  #  - cron: "0 0 * * *"
+  push:
+    branches:
+      - gh-actions-test
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+          echo running on branch ${{ github.ref_name }}
+      - run: |
+          # Install the latest Waypoint CLI
+          wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
+          echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+          sudo apt update && sudo apt install waypoint
+
+          # Create a CLI context to hook up to a Waypoint server
+          waypoint context create \
+            -server-addr=${{ secrets.WAYPOINT_SERVER_ADDR }} \
+            -server-auth-token=${{ secrets.HCP_WAYPOINT_SERVER_TOKEN }} \
+            -server-require-auth=true \
+            -server-platform="hcp" \
+            -set-default \
+            hcp-waypoint-gh-runner
+
+      - run: |
+          # Run the pipeline!
+          waypoint version
+          waypoint init
+          waypoint pipeline run -workspace=${{ github.ref_name }} \
+            -remote-source=ref=$GITHUB_SHA \
+            deploy-and-notify
