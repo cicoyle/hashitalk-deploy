@@ -1,8 +1,13 @@
-project = "hashitalk-deploy-aws"
+project = "hello-gh-actions"
 
-app "hello-app-aws" {
+app "hello-gh-actions" {
+#app "hello-app-aws" {
+#  runner {
+#    profile = "kubernetes-aws"
+#  }
+
   runner {
-    profile = "kubernetes-aws"
+    profile = "docker-01GWHZ8MJHQFAYAY53RXVM3S99"
   }
 
   build {
