@@ -5,9 +5,13 @@ app "hello-gh-actions" {
 #  runner {
 #    profile = "kubernetes-aws"
 #  }
+  labels = {
+    "check" = "polling",
+    "env"     = "dev"
+  }
 
   runner {
-    profile = "docker-01GWHZ8MJHQFAYAY53RXVM3S99"
+    profile = "kubernetes-test-poll-dockrk8s"
   }
 
   build {
